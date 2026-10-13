@@ -24,7 +24,7 @@ from app.main import app as fastapi_app  # noqa: E402
 @pytest.fixture(scope="session")
 def _db_file(tmp_path_factory: pytest.TempPathFactory) -> Iterator[Path]:
     path = Path(tmp_path_factory.mktemp("db")) / "tasks_test.db"
-    os.environ["DATABASE_URL"] = f"sqlite:///./{path.as_posix()}"
+    os.environ["DATABASE_URL"] = f"sqlite:///{path.as_posix()}"
     yield path
     if path.exists():
         path.unlink()
